@@ -1,0 +1,29 @@
+<h1>hello</h1>
+
+<h2> <%= @list.name %> </h2>
+
+<h1> <%= link_to "Create a bookmark for this list", "#{list_path}/bookmarks/new", class: "btn btn-primary" %> </h1>
+
+<h1> <%= link_to "Go Back", lists_path , class: "btn btn-primary" %> </h1>
+
+<div class="row my-2">
+    <% @list.movies.each do |movie| %>
+      <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+      <div>
+        <div>
+          <%= image_tag movie.poster_url %>
+          <div>
+            <%= movie.title %>
+            <%= movie.rating %>
+            <%= movie.overview %>
+            <div>
+              <div>
+                <%= bookmark.comment %>
+              </div>
+              <%= link_to "delete", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list"}, class: 'text-danger' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>

@@ -1,0 +1,7 @@
+<%= simple_form_for [@list, @movie] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :overview %>
+  <%= f.input :rating %>
+  <%= f.input :poster_url %>
+  <%= f.submit "Submit movie", class: "btn btn-primary" %>
+<% end %>
